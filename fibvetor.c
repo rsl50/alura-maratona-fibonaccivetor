@@ -4,14 +4,30 @@
 
 char buf[10009];
 int cnt[70];
+bool ja_calculou[70];
+int F[70];
+
 
 int calc_fibonacci (int n) {
+	
+	if (ja_calculou[n]) {
+		return F[n];		
+	} 
+	
 	cnt[n]++;
+	ja_calculou[n] = true;		
+	
 	if (n == 0) {
-        return 0;
-    } else if (n == 1) {
-         return 1;
-    } else return (calc_fibonacci(n - 1) + calc_fibonacci(n - 2));	
+		F[n] = 0;
+	}
+	else if (n == 1) {
+	   	F[n] = 1;
+	}
+	else {
+	   	F[n] = (calc_fibonacci(n - 1) + calc_fibonacci(n - 2));
+	}
+	
+	return F[n];
 }
 
 
