@@ -5,16 +5,15 @@
 char buf[10009];
 int cnt[70];
 bool ja_calculou[70];
-int F[70];
+unsigned long F[70];
 
 
-int calc_fibonacci (int n) {
+unsigned long calc_fibonacci (int n) {
 	
 	if (ja_calculou[n]) {
 		return F[n];		
 	} 
 	
-	cnt[n]++;
 	ja_calculou[n] = true;		
 	
 	if (n == 0) {
@@ -24,7 +23,7 @@ int calc_fibonacci (int n) {
 	   	F[n] = 1;
 	}
 	else {
-	   	F[n] = (calc_fibonacci(n - 1) + calc_fibonacci(n - 2));
+	   	F[n] = calc_fibonacci(n - 1) + calc_fibonacci(n - 2);
 	}
 	
 	return F[n];
@@ -44,13 +43,7 @@ int main () {
 			fgets(buf, 10009, fp);
 			int val = strtol(buf, NULL, 10);
 			
-			int result = calc_fibonacci(val);
-			printf("Fib(%d) = %d\n", val, result);
-			
-			int i = 0;
-			for (i = 0; i <= val; i++) {
-            	printf("Calculei o fibonacci(%d) %d vezes!\n", i, cnt[i]);
-        	}
+			printf("Fib(%d) = %lu\n", val, calc_fibonacci(val));
 		}
 	}
 	
